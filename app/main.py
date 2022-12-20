@@ -1,6 +1,6 @@
 import uvicorn
 from app.models.database import database
-from app.routers import posts, users
+from app.routers import posts, users, sensors
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -18,6 +18,7 @@ async def shutdown():
 
 app.include_router(users.router)
 app.include_router(posts.router)
+app.include_router(sensors.router)
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=8000)

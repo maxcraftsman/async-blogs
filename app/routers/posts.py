@@ -20,6 +20,13 @@ async def get_posts(page: int = 1):
     return {"total_count": total_cout, "results": posts}
 
 
+@router.get("/meme")
+async def get_memes(page: int = 1):
+    total_cout = await post_utils.get_posts_count()
+    posts = await post_utils.get_posts(page)
+    return {"total_count": total_cout, "results": posts}
+
+
 @router.get("/posts/{post_id}", response_model=PostDetailsModel)
 async def get_post(post_id: int):
     return await post_utils.get_post(post_id)
